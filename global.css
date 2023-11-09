@@ -1,0 +1,45 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+:root {
+    /* fonts */
+    --font-karla: Karla;
+
+    /* font sizes */
+    --font-size-5xl: 24px;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-black: #000;
+
+    /* Border radiuses */
+    --br-5xs: 8px;
+
+
+
+    /* font sizes */
+    --font-size-17xl: 36px;
+    --font-size-5xl: 24px;
+    --font-size-13xl: 32px;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-gainsboro-100: #e8e8e8;
+    --color-black: #000;
+    --color-rosybrown: #ab7b6d;
+    --color-cadetblue: #6daa98;
+
+    /* Border radiuses */
+    --br-mini: 15px;
+    --br-xs: 12px;
+}
