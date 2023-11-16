@@ -52,19 +52,19 @@
   </div>
 
   <!-- Pop-up escondido inicialmente -->
-  <div id="popup" class="popup">
+  <div id="produto-popup" class="popup">
     <div class="popup-content">
-      <span class="close" id="close-popup">&times;</span>
+      <span class="close" id="close-produto-popup">&times;</span>
       <h2>Cadastre seu produto</h2>
       <form id="produto-form">
         <label for="nome">Nome do Produto:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nomeProduto" name="nome" required>
 
         <label for="preco">Preço:</label>
-        <input type="number" id="preco" name="preco" required>
+        <input type="number" id="precoProduto" name="preco" required>
 
         <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" name="quantidade" required>
+        <input type="number" id="qntdProduto" name="quantidade" required>
 
         <button type="button" id="cadastrar-produto">Cadastrar</button>
       </form>
@@ -102,7 +102,58 @@
   </div>
 
   <script>
-    // Seu código JavaScript corrigido
+    // obter os elementos do pop-up de cadastro de produtos
+    var btnCadastrarProduto = document.getElementById("btn-cadastrar-produto");
+    var produtoPopup = document.getElementById("produto-popup");
+
+    // Quando o botão "Cadastrar Produto" for clicado, exiba o pop-up de cadastro
+    btnCadastrarProduto.addEventListener("click", function () {
+      produtoPopup.style.display = "block";
+    });
+
+    var produtos = [];//array para armazenar informações dos funcionários
+    //---------------------------------------------------------------------------------------------------------------------------
+    var cadastrarProduto = document.getElementById("cadastrar-produto");
+
+
+    cadastrarProduto.addEventListener("click", function () {
+      //obter os valores inseridos no formulário de cadastro de produto
+      var nomeProduto = document.getElementById("nomeProduto").value;
+      var precoProduto = document.getElementById("precoProduto").value;
+      var qntdProduto = document.getElementById("qntdProduto").value;
+
+      var novoProduto = {
+        nome: nomeProduto,
+        preco: precoProduto,
+        quantidade: qntdProduto
+      };
+
+      produtos.push(novoProduto);
+
+      // Limpe os campos do formulário
+      document.getElementById("nomeProduto").value = "";
+      document.getElementById("precoProduto").value = "";
+      document.getElementById("qntProduto").value = "";
+
+      produtoPopup.style.display = "none";
+    });
+
+
+
+
+
+
+    // Obtenha o botão "Fechar" no pop-up de cadastro de funcionários
+    var closeProdutoPopup = document.getElementById("close-produto-popup");
+
+    // Quando o botão "Fechar" for clicado, feche o pop-up de cadastro de funcionários
+    closeProdutoPopup.addEventListener("click", function () {
+      produtoPopup.style.display = "none";
+    });
+
+
+    //-------------------------------------------------------------------------------------------------------------
+
 
     var funcionarios = []; // Array para armazenar informações dos funcionários
 
