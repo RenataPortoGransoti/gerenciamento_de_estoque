@@ -15,12 +15,17 @@
   <div class="estoque-geral">
     <div class="sidebar"></div>
     <div class="estoque-geral-child"></div>
-    <div class="estoque-geral-item"></div>
-    <div class="nome-do-produto">Nome do produto</div>
-    <div class="div">00</div>
-    <div class="r-0000">R$ 00,00</div>
+    <div class="estoque-geral-item">
+      <ul id="listaProdutosDisplay"></ul>
+    </div>
+
+    <div class="div" id="qntdProdutoDisplay"></div>
+    <div class="r-0000" id="precoProdutoDisplay"></div>
+    <div class="nome-do-produto" id="nomeProdutoDisplay"></div>
     <div class="preo">Preço</div>
     <div class="quantidade">Quantidade</div>
+
+
     <button class="rectangle-parent" id="btn-cadastrar-produto">
       <div class="group-child"></div>
       <div class="cadastrar-produto">Cadastrar produto</div>
@@ -48,7 +53,7 @@
     <div class="bisearch"></div>
 
 
-    <div class="colocar-a-logo">COLOCAR A LOGO</div>
+    <div class="colocar-a-logo"><img src="Ellipse 2.png" /></div>
   </div>
 
   <!-- Pop-up escondido inicialmente -->
@@ -76,7 +81,7 @@
   <div id="funcionario-popup" class="popup">
     <div class="popup-content">
       <span class="close" id="close-funcionario-popup">&times;</span>
-      <h2>Cadastre um funcionário</h2>
+      <h2>Cadastrar funcionário</h2>
       <form id="funcionario-form">
         <label for="nomeFuncionario">Nome do Funcionário:</label>
         <input type="text" id="nomeFuncionario" name="nomeFuncionario" required>
@@ -133,10 +138,41 @@
       // Limpe os campos do formulário
       document.getElementById("nomeProduto").value = "";
       document.getElementById("precoProduto").value = "";
-      document.getElementById("qntProduto").value = "";
+      document.getElementById("qntdProduto").value = "";
 
       produtoPopup.style.display = "none";
+
+
+      // Atualizar a lista de produtos na página inicial
+      atualizarListaProdutos();
     });
+
+    // Função para atualizar a lista de produtos na página inicial
+    function atualizarListaProdutos() {
+      var nomeProdutoDisplay = document.getElementById("nomeProdutoDisplay");
+      var precoProdutoDisplay = document.getElementById("precoProdutoDisplay");
+      var qntdProdutoDisplay = document.getElementById("qntdProdutoDisplay");
+
+      // Limpar as divs antes de adicionar os novos produtos
+      nomeProdutoDisplay.innerHTML = "";
+      precoProdutoDisplay.innerHTML = "";
+      qntdProdutoDisplay.innerHTML = "";
+
+      // Adicionar cada produto às divs correspondentes
+      produtos.forEach(function (produto) {
+        var nomeDiv = document.createElement("div");
+        var precoDiv = document.createElement("div");
+        var qntdDiv = document.createElement("div");
+
+        nomeDiv.innerText = produto.nome;
+        precoDiv.innerText = "R$ " + produto.preco;
+        qntdDiv.innerText = produto.quantidade;
+
+        nomeProdutoDisplay.appendChild(nomeDiv);
+        precoProdutoDisplay.appendChild(precoDiv);
+        qntdProdutoDisplay.appendChild(qntdDiv);
+      });
+    }
 
 
 
@@ -196,7 +232,7 @@
       document.getElementById("cpfFuncionario").value = "";
       document.getElementById("dataNascimento").value = "";
 
-      // Feche o pop-up de cadastro
+      // Feche o pop-up de cadastro 
       funcionarioPopup.style.display = "none";
     });
 
