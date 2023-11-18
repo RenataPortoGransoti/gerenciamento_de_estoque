@@ -21,7 +21,7 @@
     flex-wrap: wrap;
 }
 
-.input-usurio {
+.input-usuario {
     background-color: #fffdfd;
     top: 243px;
     left: 98px;
@@ -30,7 +30,7 @@
 
 .input-senha,
 .input-senha1,
-.input-usurio {
+.input-usuario {
     border: 0;
     position: absolute;
     border-radius: var(--br-5xs);
@@ -55,22 +55,22 @@
     height: 60px;
 }
 
-.usurio {
+.usuario {
     top: 202px;
     left: 98px;
     width: 296px;
     height: 41px;
 }
 
-.acesse-a-sua,
+.acesse,
 .entrar,
 .senha,
-.usurio {
+.usuario {
     position: absolute;
     display: inline-block;
 }
 
-.acesse-a-sua {
+.acesse {
     top: 55px;
     left: 87px;
     font-size: 48px;
