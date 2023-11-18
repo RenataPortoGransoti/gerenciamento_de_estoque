@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/inicial.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400&display=swap" />
+</head>
+
+<body>
+
+  <div class="estoque-geral">
+    <div class="sidebar"></div>
+    <div class="estoque-geral-child"></div>
+    <div class="estoque-geral-item">
+      <ul id="listaProdutosDisplay"></ul>
+    </div>
+
+    <div class="div" id="qntdProdutoDisplay"></div>
+    <div class="r-0000" id="precoProdutoDisplay"></div>
+    <div class="nome-do-produto" id="nomeProdutoDisplay"></div>
+    <div class="preo">Preço</div>
+    <div class="quantidade">Quantidade</div>
+
+
+    <button class="rectangle-parent" id="btn-cadastrar-produto">
+      <div class="group-child"></div>
+      <div class="cadastrar-produto">Cadastrar produto</div>
+    </button>
+    <button class="rectangle-group" id="btn-cadastrarproduto-mais">
+      <div class="group-item"></div>
+      <div class="div1">+</div>
+    </button>
+    <button class="rectangle-container" id="btn-cadastrar-funcionarios">
+      <div class="group-child"></div>
+      <div class="cadastrar-funcionrios">Cadastrar funcionários</div>
+    </button>
+    <button class="group-button" id="btn-ver-funcionarios">
+      <div class="group-child"></div>
+      <div class="ver-funcionrios">Ver funcionários</div>
+    </button>
+
+    <div class="usurio">usuário</div>
+    <button class="mditrash">
+      <img class="vector-icon" alt="" src="mdi_trash.png" />
+    </button>
+
+    <textarea class="rectangle-textarea" placeholder="pesquise um produto" id="pesquisar-produtos">
+      </textarea>
+    <div class="bisearch"></div>
+
+
+    <div class="colocar-a-logo"><img src="Ellipse 2.png" /></div>
+  </div>
+
+  <!-- Pop-up escondido inicialmente -->
+  <div id="produto-popup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="close-produto-popup">&times;</span>
+      <h2>Cadastre seu produto</h2>
+      <form id="produto-form">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" id="nomeProduto" name="nome" required>
+
+        <label for="preco">Preço:</label>
+        <input type="number" id="precoProduto" name="preco" required>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="qntdProduto" name="quantidade" required>
+
+        <button type="button" id="cadastrar-produto">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <!-- fim do pop up-->
+
+  <!-- Pop-up escondido inicialmente -->
+  <div id="funcionario-popup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="close-funcionario-popup">&times;</span>
+      <h2>Cadastrar funcionário</h2>
+      <form id="funcionario-form">
+        <label for="nomeFuncionario">Nome do Funcionário:</label>
+        <input type="text" id="nomeFuncionario" name="nomeFuncionario" required>
+
+        <label for="cpfFuncionario">CPF:</label>
+        <input type="text" id="cpfFuncionario" name="cpfFuncionario" required>
+
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required>
+
+        <button type="button" id="cadastrar-funcionario">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <!-- fim do pop up-->
+
+  <div id="ver-funcionarios-popup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="close-lista-funcionarios-popup">&times;</span>
+      <h2>Lista de Funcionários</h2>
+      <div id="lista-funcionarios"></div>
+    </div>
+  </div>
+
+  <script>
+    // obter os elementos do pop-up de cadastro de produtos
+    var btnCadastrarProduto = document.getElementById("btn-cadastrar-produto");
+    var produtoPopup = document.getElementById("produto-popup");
+
+    // Quando o botão "Cadastrar Produto" for clicado, exiba o pop-up de cadastro
+    btnCadastrarProduto.addEventListener("click", function () {
+      produtoPopup.style.display = "block";
+    });
+
+    var produtos = [];//array para armazenar informações dos funcionários
+    //---------------------------------------------------------------------------------------------------------------------------
+    var cadastrarProduto = document.getElementById("cadastrar-produto");
+
+
+    cadastrarProduto.addEventListener("click", function () {
+      //obter os valores inseridos no formulário de cadastro de produto
+      var nomeProduto = document.getElementById("nomeProduto").value;
+      var precoProduto = document.getElementById("precoProduto").value;
+      var qntdProduto = document.getElementById("qntdProduto").value;
+
+      var novoProduto = {
+        nome: nomeProduto,
+        preco: precoProduto,
+        quantidade: qntdProduto
+      };
+
+      produtos.push(novoProduto);
+
+      // Limpe os campos do formulário
+      document.getElementById("nomeProduto").value = "";
+      document.getElementById("precoProduto").value = "";
+      document.getElementById("qntdProduto").value = "";
+
+      produtoPopup.style.display = "none";
+
+
+      // Atualizar a lista de produtos na página inicial
+      atualizarListaProdutos();
+    });
+
+    // Função para atualizar a lista de produtos na página inicial
+    function atualizarListaProdutos() {
+      var nomeProdutoDisplay = document.getElementById("nomeProdutoDisplay");
+      var precoProdutoDisplay = document.getElementById("precoProdutoDisplay");
+      var qntdProdutoDisplay = document.getElementById("qntdProdutoDisplay");
+
+      // Limpar as divs antes de adicionar os novos produtos
+      nomeProdutoDisplay.innerHTML = "";
+      precoProdutoDisplay.innerHTML = "";
+      qntdProdutoDisplay.innerHTML = "";
+
+      // Adicionar cada produto às divs correspondentes
+      produtos.forEach(function (produto) {
+        var nomeDiv = document.createElement("div");
+        var precoDiv = document.createElement("div");
+        var qntdDiv = document.createElement("div");
+
+        nomeDiv.innerText = produto.nome;
+        precoDiv.innerText = "R$ " + produto.preco;
+        qntdDiv.innerText = produto.quantidade;
+
+        nomeProdutoDisplay.appendChild(nomeDiv);
+        precoProdutoDisplay.appendChild(precoDiv);
+        qntdProdutoDisplay.appendChild(qntdDiv);
+      });
+    }
+
+
+
+
+
+
+    // Obtenha o botão "Fechar" no pop-up de cadastro de funcionários
+    var closeProdutoPopup = document.getElementById("close-produto-popup");
+
+    // Quando o botão "Fechar" for clicado, feche o pop-up de cadastro de funcionários
+    closeProdutoPopup.addEventListener("click", function () {
+      produtoPopup.style.display = "none";
+    });
+
+
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    var funcionarios = []; // Array para armazenar informações dos funcionários
+
+    // Obtenha os elementos do pop-up de cadastro de funcionários
+    var btnCadastrarFuncionarios = document.getElementById("btn-cadastrar-funcionarios");
+    var funcionarioPopup = document.getElementById("funcionario-popup");
+    var listafuncionarioPopup = document.getElementById("ver-funcionarios-popup");
+
+    // Obtenha os elementos do pop-up de visualização de funcionários
+    var btnVerFuncionarios = document.getElementById("btn-ver-funcionarios");
+    var verFuncionariosPopup = document.getElementById("ver-funcionarios-popup");
+    var listaFuncionarios = document.getElementById("lista-funcionarios");
+    var closeVerFuncionariosPopup = document.getElementById("close-ver-funcionarios-popup");
+
+    // Quando o botão "Cadastrar Funcionários" for clicado, exiba o pop-up de cadastro
+    btnCadastrarFuncionarios.addEventListener("click", function () {
+      funcionarioPopup.style.display = "block";
+    });
+
+    // Quando o botão "Cadastrar" no pop-up de cadastro de funcionários for clicado
+    var cadastrarFuncionario = document.getElementById("cadastrar-funcionario");
+    cadastrarFuncionario.addEventListener("click", function () {
+      // Obtenha os valores dos campos de entrada
+      var nomeFuncionario = document.getElementById("nomeFuncionario").value;
+      var cpfFuncionario = document.getElementById("cpfFuncionario").value;
+      var dataNascimento = document.getElementById("dataNascimento").value;
+
+      // Crie um objeto com as informações do funcionário
+      var novoFuncionario = {
+        nome: nomeFuncionario,
+        cpf: cpfFuncionario,
+        dataNascimento: dataNascimento
+      };
+
+      // Adicione o novo funcionário ao array
+      funcionarios.push(novoFuncionario);
+
+      // Limpe os campos do formulário
+      document.getElementById("nomeFuncionario").value = "";
+      document.getElementById("cpfFuncionario").value = "";
+      document.getElementById("dataNascimento").value = "";
+
+      // Feche o pop-up de cadastro 
+      funcionarioPopup.style.display = "none";
+    });
+
+    // Quando o botão "Ver Funcionários" for clicado, atualize e exiba a lista de funcionários
+    btnVerFuncionarios.addEventListener("click", function () {
+      atualizarListaFuncionarios();
+      verFuncionariosPopup.style.display = "block";
+    });
+
+    // Função para atualizar a lista de funcionários
+    function atualizarListaFuncionarios() {
+      listaFuncionarios.innerHTML = "";
+
+      funcionarios.forEach(function (funcionario) {
+        var funcionarioItem = document.createElement("div");
+        funcionarioItem.innerText = "Nome: " + funcionario.nome + " | CPF: " + funcionario.cpf + " | Data de Nascimento: " + funcionario.dataNascimento;
+        listaFuncionarios.appendChild(funcionarioItem);
+      });
+    }
+
+
+    // Obtenha o botão "Fechar" no pop-up de cadastro de funcionários
+    var closeFuncionarioPopup = document.getElementById("close-funcionario-popup");
+
+    // Quando o botão "Fechar" for clicado, feche o pop-up de cadastro de funcionários
+    closeFuncionarioPopup.addEventListener("click", function () {
+      funcionarioPopup.style.display = "none";
+    });
+
+
+    // Obtenha o botão "Fechar" no pop-up de cadastro de funcionários
+    var closeListaFuncionarioPopup = document.getElementById("close-lista-funcionarios-popup");
+
+    // Quando o botão "Fechar" for clicado, feche o pop-up de cadastro de funcionários
+    closeListaFuncionarioPopup.addEventListener("click", function () {
+      listafuncionarioPopup.style.display = "none";
+    });
+
+
+
+  </script>
+</body>
+
+</html>
