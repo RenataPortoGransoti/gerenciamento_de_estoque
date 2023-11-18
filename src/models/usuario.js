@@ -30,5 +30,5 @@ const Usuario = db.define(
 Usuario.sync();
 
 //VERIFICA SE TEM ALGUMA ALTERAÇÃO NA TABELA PARA INSERIR OS NOVOS CAMPOS
-//Usuario.sync({alter: true});
+Usuario.sync({ alter: true });
 module.exports = Usuario;

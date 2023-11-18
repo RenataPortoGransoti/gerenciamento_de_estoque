@@ -5,12 +5,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const bd = require('./dao/db.js');
-//const Usuario = require('./modles/usuario');
+const Usuario = require('./models/usuario');
 //const Controller = require | ('./controller/usuario_controller');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extend: true }));
-//app.use(UsuarioController);
+app.use(Usuario);
 
 app.listen(3333, () => {
     console.log("Servidor rodando")
