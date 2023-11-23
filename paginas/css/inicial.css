@@ -348,7 +348,6 @@
     font-family: var(--font-karla);
 }
 
-
 .popup {
     display: none;
     position: fixed;
@@ -363,13 +362,59 @@
 }
 
 .popup-content {
-    background-color: #fff;
+    background-color: #ab7b6d;
+    color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
-    text-align: center;
+    max-width: 30%;
+    /* Definindo uma largura máxima */
+    width: 100%;
+    /* Fazendo o conteúdo ocupar toda a largura */
+    margin: auto;
     position: relative;
 }
+
+#produto-form,
+#funcionario-form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#produto-form input,
+#funcionario-form input {
+    width: calc(100% - 16px);
+    /* Ajustando a largura do input */
+    margin-bottom: 16px;
+    height: 2vw;
+}
+
+h2 {
+    text-align: center;
+}
+
+#cadastrar-produto,
+#cadastrar-funcionario {
+    width: 30%;
+    margin-top: 16px;
+    height: 2vw;
+    background-color: #6daa98;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8vw;
+
+
+}
+
+#close-produto-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
 
 .close {
     position: absolute;
