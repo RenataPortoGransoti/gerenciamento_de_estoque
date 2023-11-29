@@ -15,9 +15,9 @@
   <div class="estoque-geral">
     <div class="sidebar"></div>
     <div class="estoque-geral-child"></div>
-    <div class="estoque-geral-item">
-      <ul id="listaProdutosDisplay"></ul>
-    </div>
+
+    <ul id="listaProdutosDisplay"></ul>
+
 
     <div class="div" id="qntdProdutoDisplay"></div>
     <div class="r-0000" id="precoProdutoDisplay"></div>
@@ -47,10 +47,6 @@
     <button class="mditrash">
       <img class="vector-icon" alt="" src="mdi_trash.png" />
     </button>
-
-    <textarea class="rectangle-textarea" placeholder="pesquise um produto" id="pesquisar-produtos">
-      </textarea>
-    <div class="bisearch"></div>
 
 
     <div class="colocar-a-logo"><img src="Ellipse 2.png" /></div>
@@ -271,6 +267,25 @@
       listafuncionarioPopup.style.display = "none";
     });
 
+    // Obter o botão "Cadastrar Produto +" e o pop-up de produto
+    var btnCadastrarProdutoMais = document.getElementById("btn-cadastrarproduto-mais");
+    var produtoPopup = document.getElementById("produto-popup");
+
+    // Quando o botão "+" for clicado, exiba o pop-up de cadastro de produto
+    btnCadastrarProdutoMais.addEventListener("click", function () {
+      produtoPopup.style.display = "block";
+    });
+
+    // Obtenha o botão "Excluir Produto" (ícone de trash)
+    var btnExcluirProduto = document.querySelector(".mditrash");
+
+    // Quando o botão "Excluir Produto" for clicado, remova o primeiro produto da lista
+    btnExcluirProduto.addEventListener("click", function () {
+      if (produtos.length > 0) {
+        produtos.shift(); // Remove o primeiro elemento do array
+        atualizarListaProdutos(); // Atualiza a lista de produtos na página
+      }
+    });
 
 
   </script>
