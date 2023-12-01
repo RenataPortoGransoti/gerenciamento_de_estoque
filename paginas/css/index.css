@@ -1,3 +1,8 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+
 .div-imagem {
     display: flex;
 }
@@ -25,8 +30,8 @@
 
 .input-usuario {
     background-color: #fffdfd;
-    top: 243px;
-    left: 98px;
+    top: 40%;
+    left: 30%;
     width: 456px;
 }
 
@@ -42,8 +47,8 @@
 
 .input-senha {
     background-color: var(--color-white);
-    top: 436px;
-    left: 98px;
+    top: 60%;
+    left: 30%;
     width: 456px;
 }
 
@@ -51,15 +56,15 @@
     cursor: pointer;
     padding: 0;
     background-color: #332922;
-    top: 607px;
-    left: 193px;
+    top: 65%;
+    left: 30%;
     width: 265px;
     height: 60px;
 }
 
 .usuario {
-    top: 202px;
-    left: 98px;
+    top: 35%;
+    left: 30%;
     width: 296px;
     height: 41px;
 }
@@ -73,8 +78,8 @@
 }
 
 .acesse {
-    top: 55px;
-    left: 87px;
+    top: 20%;
+    left: 30%;
     font-size: 48px;
     color: var(--color-white);
     text-align: center;
@@ -87,8 +92,8 @@
 }
 
 .senha {
-    top: 395px;
-    left: 98px;
+    top: 55%;
+    left: 30%;
     height: 41px;
 }
 
@@ -97,8 +102,8 @@
     border: 0;
     padding: 0;
     background-color: transparent;
-    top: 619px;
-    left: 177px;
+    top: 70%;
+    left: 35%;
     font-size: 32px;
     font-family: var(--font-karla);
     color: var(--color-white);
